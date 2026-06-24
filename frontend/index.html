@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+    <div class="header">
+
+    <h1>Personal Finance Tracker</h1>
+
+    <div id="dateTime"></div>
+
+</div>
+
+    <button id="logoutBtn">
+        Logout
+    </button>
+
+        <div class="inputs">
+
+            <input
+                type="text"
+                id="expenseName"
+                placeholder="Transaction Name">
+
+            <input
+                type="number"
+                id="expenseAmount"
+                placeholder="Amount">
+
+            <select id="expenseCategory">
+    <option>Food</option>
+    <option>Groceries</option>
+    <option>Rent</option>
+    <option>Utilities</option>
+    <option>Transportation</option>
+    <option>Fuel</option>
+    <option>Shopping</option>
+    <option>Entertainment</option>
+    <option>Healthcare</option>
+    <option>Education</option>
+    <option>Travel</option>
+    <option>Insurance</option>
+    <option>Investments</option>
+    <option>Savings</option>
+    <option>Salary</option>
+    <option>Freelance</option>
+    <option>Business</option>
+    <option>Bonus</option>
+    <option>Gifts</option>
+    <option>Taxes</option>
+    <option>EMI / Loans</option>
+    <option>Subscriptions</option>
+    <option>Personal Care</option>
+    <option>Pets</option>
+    <option>Other</option>
+</select>
+
+            <select id="transactionType">
+    <option value="expense">Expense</option>
+    <option value="income">Income</option>
+</select>
+
+            <button id="addBtn">
+    Add Transaction
+</button>
+
+<div class="undoRedoButtons">
+
+    <button id="undoBtn">
+        Undo
+    </button>
+
+    <button id="redoBtn">
+        Redo
+    </button>
+
+</div>
+                
+            </button>
+
+        </div>
+
+        <div class="budget-section">
+
+    <input
+        type="number"
+        id="budgetInput"
+        placeholder="Monthly Budget">
+
+    <button id="saveBudgetBtn">
+        Save Budget
+    </button>
+
+</div>
+
+<div class="filterSection">
+
+    <label>
+        Filter:
+    </label>
+
+    <div class="filterSection">
+
+    <label>Category:</label>
+
+    <select id="filterCategory">
+
+        <option value="All">
+            All Categories
+        </option>
+
+    </select>
+
+    <label>Type:</label>
+
+    <select id="filterType">
+
+        <option value="All">
+            All Types
+        </option>
+
+        <option value="expense">
+            Expense
+        </option>
+
+        <option value="income">
+            Income
+        </option>
+
+    </select>
+
+</div>
+
+        <h2 id="totalText">Total: ₹0</h2>
+
+        <ul id="expenseList"></ul>
+
+        <h2>Spending Breakdown</h2>
+
+<div class="dashboard">
+
+    <div class="chartSection">
+
+        <h3>6 Month Financial Trend</h3>
+
+<canvas id="trendChart"></canvas>
+
+        <h3>Radial Chart</h3>
+
+<canvas id="expenseChart"></canvas>
+
+        <h3>Monthly Income vs Expenses</h3>
+
+<canvas id="monthlyChart"></canvas>
+
+    </div>
+
+    <div class="statsSection">
+
+        <h3>Analytics</h3>
+
+        <p id="incomeText">
+            Income: 0 ₹
+        </p>
+
+        <p id="expenseText">
+            Expenses: 0 ₹
+        </p>
+
+        <p id="savingsText">
+            Savings: 0 ₹
+        </p>
+
+        <p id="topCategoryText">
+    Top Category: -
+</p>
+
+<p id="transactionCountText">
+    Transactions: 0
+</p>
+
+<p id="largestExpenseText">
+    <p id="recentTransactionText">
+    Recent Transaction: -
+</p>
+</p>
+
+<hr>
+
+<h4>Monthly Analytics</h4>
+
+<p id="monthlyIncomeText">
+    This Month Income: 0 ₹
+</p>
+
+<p id="monthlyExpenseText">
+    This Month Expenses: 0 ₹
+</p>
+
+<p id="monthlySavingsText">
+    This Month Savings: 0 ₹
+</p>
+
+<p id="monthlySavingsRateText">
+<hr>
+
+<p id="budgetText">
+    Budget: 0 ₹
+</p>
+
+<p id="remainingBudgetText">
+    Remaining: 0 ₹
+</p>
+
+<p id="budgetUsageText">
+    Used: 0%
+</p>
+
+<div class="budgetBar">
+
+    <div
+        id="budgetProgress">
+    </div>
+
+</div>
+
+<p id="budgetStatus">
+
+</p>
+    Savings Rate: 0%
+</p>
+
+    </div>
+
+</div>
+
+    </div>
+
+    <script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/transactions.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

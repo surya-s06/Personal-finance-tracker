@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Finance Tracker</h1>
+
+        <div class="inputs">
+
+            <input
+                type="text"
+                id="expenseName"
+                placeholder="Transaction Name">
+
+            <input
+                type="number"
+                id="expenseAmount"
+                placeholder="Amount">
+
+            <select id="expenseCategory">
+    <option>Food</option>
+    <option>Groceries</option>
+    <option>Rent</option>
+    <option>Utilities</option>
+    <option>Transportation</option>
+    <option>Fuel</option>
+    <option>Shopping</option>
+    <option>Entertainment</option>
+    <option>Healthcare</option>
+    <option>Education</option>
+    <option>Travel</option>
+    <option>Insurance</option>
+    <option>Investments</option>
+    <option>Savings</option>
+    <option>Salary</option>
+    <option>Freelance</option>
+    <option>Business</option>
+    <option>Bonus</option>
+    <option>Gifts</option>
+    <option>Taxes</option>
+    <option>EMI / Loans</option>
+    <option>Subscriptions</option>
+    <option>Personal Care</option>
+    <option>Pets</option>
+    <option>Other</option>
+</select>
+
+            <select id="transactionType">
+    <option value="expense">Expense</option>
+    <option value="income">Income</option>
+</select>
+
+            <button id="addBtn">
+                Add Transaction
+            </button>
+
+        </div>
+
+        <h2 id="totalText">Total: ₹0</h2>
+
+        <ul id="expenseList"></ul>
+
+    </div>
+
+    <script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/transactions.js"></script>
+<script src="guest.js"></script>
+
+</body>
+</html>
