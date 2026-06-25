@@ -1,7 +1,4 @@
-README.md
-Create a file called:
-README.md
-and paste this:
+
 # Personal Finance Tracker
 
 A full-stack personal finance management application that helps users track income, expenses, savings, and budgets through interactive analytics and visualizations.
