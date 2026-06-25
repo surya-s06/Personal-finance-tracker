@@ -299,3 +299,12 @@ button {
 
     margin-top: 10px;
 }
+
+#exportBtn {
+
+    background: #2563eb;
+
+    color: white;
+
+    min-width: 130px;
+}

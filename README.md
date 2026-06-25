@@ -95,7 +95,7 @@ expense-tracker/
 
 ## Future Improvements
 
-- Export Transactions to CSV
+- Export Transactions to CSV ✅
 - Dark Mode
 - Recurring Transactions
 - Financial Goals Tracking

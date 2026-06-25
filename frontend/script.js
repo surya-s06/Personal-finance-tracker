@@ -22,6 +22,11 @@ const redoBtn =
         "redoBtn"
     );
 
+    const exportBtn =
+    document.getElementById(
+        "exportBtn"
+    );
+
 let editingTransactionId = null;
 
 let undoStack = [];
@@ -1098,5 +1103,56 @@ redoBtn.addEventListener(
         );
 
         await renderExpenses();
+    }
+);
+
+exportBtn.addEventListener(
+    "click",
+    async () => {
+
+        const transactions =
+            await loadTransactions();
+
+        let csv =
+            "Date,Type,Category,Description,Amount\n";
+
+        transactions.forEach(
+            transaction => {
+
+                csv +=
+`${new Date(transaction.date).toLocaleDateString()},${transaction.type},${transaction.category},"${transaction.description}",${transaction.amount}\n`;
+
+            }
+        );
+
+        const blob =
+            new Blob(
+                [csv],
+                {
+                    type:
+                        "text/csv"
+                }
+            );
+
+        const url =
+            window.URL.createObjectURL(
+                blob
+            );
+
+        const link =
+            document.createElement(
+                "a"
+            );
+
+        link.href = url;
+
+        link.download =
+            "transactions.csv";
+
+        link.click();
+
+        window.URL.revokeObjectURL(
+            url
+        );
     }
 );
