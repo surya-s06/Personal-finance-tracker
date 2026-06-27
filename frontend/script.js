@@ -27,6 +27,16 @@ const redoBtn =
         "exportBtn"
     );
 
+    const darkModeToggle =
+    document.getElementById(
+        "darkModeToggle"
+    );
+
+    const themeText =
+    document.getElementById(
+        "themeText"
+    );
+
 let editingTransactionId = null;
 
 let undoStack = [];
@@ -1154,5 +1164,63 @@ exportBtn.addEventListener(
         window.URL.revokeObjectURL(
             url
         );
+    }
+);
+
+const savedTheme =
+    localStorage.getItem(
+        "theme"
+    );
+
+if(savedTheme === "dark") {
+
+    document.body.classList.add(
+        "darkMode"
+    );
+
+    darkModeToggle.checked = true;
+
+    themeText.textContent =
+        "Light Mode";
+
+} else {
+
+    themeText.textContent =
+        "Dark Mode";
+}
+
+darkModeToggle.addEventListener(
+    "change",
+    () => {
+
+        document.body.classList.toggle(
+            "darkMode"
+        );
+
+        if(
+    document.body.classList.contains(
+        "darkMode"
+    )
+) {
+
+    localStorage.setItem(
+        "theme",
+        "dark"
+    );
+
+    themeText.textContent =
+        "Light Mode";
+
+} else {
+
+    localStorage.setItem(
+        "theme",
+        "light"
+    );
+
+    themeText.textContent =
+        "Dark Mode";
+}
+
     }
 );
