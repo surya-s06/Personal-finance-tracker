@@ -35,9 +35,15 @@ h1 {
     flex-wrap: wrap;
 }
 
+.inputs input,
+.inputs select {
+
+    flex: 1;
+
+}
+
 input,
 select {
-    flex: 1;
 
     padding: 12px;
 
@@ -459,4 +465,33 @@ input:checked + .slider:before {
     color: inherit;
 
     font-size: 15px;
+}
+
+#fromDate,
+#toDate {
+
+    width: 180px;
+
+}
+
+.dateFilterSection {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 15px;
+
+    margin-bottom: 20px;
+
+    flex-wrap: wrap;
+
+}
+
+.dateFilterSection select {
+
+    width: 220px;
+
 }

@@ -97,6 +97,7 @@ expense-tracker/
 
 - Export Transactions to CSV ✅
 - Dark Mode ✅
+- Date Filter ✅
 - Recurring Transactions
 - Financial Goals Tracking
 - AI-Based Spending Insights

@@ -27,6 +27,21 @@ const redoBtn =
         "exportBtn"
     );
 
+    const dateFilter =
+    document.getElementById(
+        "dateFilter"
+    );
+
+const fromDate =
+    document.getElementById(
+        "fromDate"
+    );
+
+const toDate =
+    document.getElementById(
+        "toDate"
+    );
+
     const darkModeToggle =
     document.getElementById(
         "darkModeToggle"
@@ -62,11 +77,6 @@ const saveBudgetBtn =
     const transactions =
         await loadTransactions();
 
-    const filterCategory =
-        document.getElementById(
-            "filterCategory"
-        );
-
     const expenseCategory =
     document.getElementById(
         "expenseCategory"
@@ -77,8 +87,6 @@ const uniqueCategories =
         .map(
             option => option.value
         );
-
-        console.log(uniqueCategories);
 
     const currentSelection =
     filterCategory.value || "All";
@@ -106,6 +114,14 @@ filterCategory.value =
     currentSelection;
 
     expenseList.innerHTML = "";
+
+    const selectedCategory =
+    filterCategory.value;
+
+const selectedType =
+    document.getElementById(
+        "filterType"
+    ).value;
 
     let total = 0;
 
@@ -164,16 +180,6 @@ for(let i = 5; i >= 0; i--) {
 
     transactions.forEach((transaction) => {
 
-        const selectedCategory =
-    document.getElementById(
-        "filterCategory"
-    ).value;
-
-const selectedType =
-    document.getElementById(
-        "filterType"
-    ).value;
-
 if(
 
     selectedCategory !== "All"
@@ -202,8 +208,161 @@ if(
     return;
 }
 
-        const transactionDate =
+const selectedDate =
+    dateFilter.value;
+
+const transactionDate =
     new Date(transaction.date);
+
+const today =
+    new Date();
+
+today.setHours(
+    0,0,0,0
+);
+
+if(selectedDate === "today") {
+
+    const d =
+        new Date(transaction.date);
+
+    d.setHours(
+        0,0,0,0
+    );
+
+    if(
+        d.getTime() !==
+        today.getTime()
+    ) {
+
+        return;
+    }
+
+}
+
+if(selectedDate === "week") {
+
+    const startOfWeek =
+        new Date(today);
+
+    startOfWeek.setDate(
+        today.getDate() -
+        today.getDay()
+    );
+
+    startOfWeek.setHours(
+        0,0,0,0
+    );
+
+    const endOfWeek =
+        new Date(startOfWeek);
+
+    endOfWeek.setDate(
+        startOfWeek.getDate() + 6
+    );
+
+    endOfWeek.setHours(
+        23,59,59,999
+    );
+
+    if(
+        transactionDate < startOfWeek ||
+
+        transactionDate > endOfWeek
+    ) {
+
+        return;
+    }
+
+}
+
+if(selectedDate === "month") {
+
+    if(
+
+        transactionDate.getMonth() !==
+        currentMonth
+
+        ||
+
+        transactionDate.getFullYear() !==
+        currentYear
+
+    ) {
+
+        return;
+    }
+
+}
+
+if(selectedDate === "lastMonth") {
+
+    const lastMonth =
+        currentMonth === 0
+            ? 11
+            : currentMonth - 1;
+
+    const lastMonthYear =
+        currentMonth === 0
+            ? currentYear - 1
+            : currentYear;
+
+    if(
+
+        transactionDate.getMonth() !==
+        lastMonth
+
+        ||
+
+        transactionDate.getFullYear() !==
+        lastMonthYear
+
+    ) {
+
+        return;
+    }
+
+}
+
+if(selectedDate === "custom") {
+
+    if(
+
+        !fromDate.value ||
+
+        !toDate.value
+
+    ) {
+
+        return;
+    }
+
+    const startDate =
+        new Date(fromDate.value);
+
+    startDate.setHours(
+        0,0,0,0
+    );
+
+    const endDate =
+        new Date(toDate.value);
+
+    endDate.setHours(
+        23,59,59,999
+    );
+
+    if(
+
+        transactionDate < startDate ||
+
+        transactionDate > endDate
+
+    ) {
+
+        return;
+    }
+
+}
 
 const monthsDifference =
 
@@ -339,9 +498,6 @@ editBtn.addEventListener(
     "click",
     () => {
 
-        console.log("EDIT CLICKED");
-        console.log(transaction._id);
-
         editingTransactionId =
             transaction._id;
 
@@ -386,11 +542,6 @@ deleteBtn.addEventListener(
 
     transaction: transaction
 });
-
-console.log(
-    "UNDO PUSHED",
-    undoStack
-);
 
 redoStack = [];
 
@@ -440,7 +591,7 @@ document.getElementById(
     document.getElementById(
     "transactionCountText"
 ).textContent =
-    `Transactions: ${transactions.length}`;
+    `Transactions: ${expenseList.children.length}`;
 
     document.getElementById(
     "largestExpenseText"
@@ -633,10 +784,7 @@ addBtn.addEventListener("click", async () => {
         return;
     }
 
-    console.log("editingTransactionId =", editingTransactionId);
    if(editingTransactionId) {
-
-    console.log("UPDATE MODE");
 
     const transactions =
     await loadTransactions();
@@ -666,15 +814,11 @@ redoStack = [];
         type
     );
 
-    console.log("UPDATE FINISHED");
-
     editingTransactionId = null;
 
     addBtn.textContent = "Add Transaction";
 
 } else {
-
-    console.log("CREATE MODE");
 
     const createdTransaction =
     await createTransaction(
@@ -1047,15 +1191,49 @@ filterCategory.addEventListener(
 );
 
 document.getElementById(
-    "filterCategory"
+    "filterType"
 ).addEventListener(
     "change",
     renderExpenses
 );
 
-document.getElementById(
-    "filterType"
-).addEventListener(
+dateFilter.addEventListener(
+    "change",
+    () => {
+
+        if(
+            dateFilter.value === "custom"
+        ) {
+
+            fromDate.style.display =
+                "inline-block";
+
+            toDate.style.display =
+                "inline-block";
+
+        }
+
+        else {
+
+            fromDate.style.display =
+                "none";
+
+            toDate.style.display =
+                "none";
+
+        }
+
+        renderExpenses();
+
+    }
+);
+
+fromDate.addEventListener(
+    "change",
+    renderExpenses
+);
+
+toDate.addEventListener(
     "change",
     renderExpenses
 );

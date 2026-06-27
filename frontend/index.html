@@ -107,8 +107,6 @@
     </button>
 
 </div>
-                
-            </button>
 
         </div>
 
@@ -131,35 +129,65 @@
         Filter:
     </label>
 
-    <div class="filterSection">
 
     <label>Category:</label>
 
-    <select id="filterCategory">
+<select id="filterCategory">
 
-        <option value="All">
-            All Categories
-        </option>
+    <option value="All">
+        All Categories
+    </option>
+
+</select>
+
+<label>Type:</label>
+
+<select id="filterType">
+
+    <option value="All">
+        All Types
+    </option>
+
+    <option value="expense">
+        Expense
+    </option>
+
+    <option value="income">
+        Income
+    </option>
+
+</select>
+
+<label>Date:</label>
+
+</div>
+
+<div class="dateFilterSection">
+
+    <label>Date:</label>
+
+    <select id="dateFilter">
+
+        <option value="all">All Time</option>
+        <option value="today">Today</option>
+        <option value="week">This Week</option>
+        <option value="month">This Month</option>
+        <option value="lastMonth">Last Month</option>
+        <option value="custom">Custom Range</option>
 
     </select>
 
-    <label>Type:</label>
+    <input
+        type="date"
+        id="fromDate"
+        style="display:none;"
+    >
 
-    <select id="filterType">
-
-        <option value="All">
-            All Types
-        </option>
-
-        <option value="expense">
-            Expense
-        </option>
-
-        <option value="income">
-            Income
-        </option>
-
-    </select>
+    <input
+        type="date"
+        id="toDate"
+        style="display:none;"
+    >
 
 </div>
 
@@ -212,9 +240,11 @@
 </p>
 
 <p id="largestExpenseText">
-    <p id="recentTransactionText">
-    Recent Transaction: -
+    Largest Expense: -
 </p>
+
+<p id="recentTransactionText">
+    Recent Transaction: -
 </p>
 
 <hr>
@@ -234,6 +264,9 @@
 </p>
 
 <p id="monthlySavingsRateText">
+    Savings Rate: 0%
+</p>
+
 <hr>
 
 <p id="budgetText">
@@ -257,16 +290,13 @@
 </div>
 
 <p id="budgetStatus">
-
 </p>
-    Savings Rate: 0%
-</p>
-
-    </div>
 
 </div>
 
-    </div>
+</div>
+
+</div>
 
     <script src="js/api.js"></script>
 <script src="js/auth.js"></script>
